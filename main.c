@@ -5,10 +5,13 @@
 size_t	ft_strlen(char *);
 char	*ft_strcpy(char *dest, char *src);
 int		ft_strcmp(const char *s1, const char *s2);
+char	*ft_strdup(const char *s1);
 
 int main (void)
 {
 	char dest[200];
+	char *aux;
+	char c = "\xff";
 
 	printf("\033[4;32mFT_STRLEN\n\n\033[0m");
 	printf("string:    hola\n");
@@ -43,43 +46,51 @@ int main (void)
 	printf("\n");
 
 	printf("\033[4;32mFT_STRCMP\n\n\033[0m");
+	printf("s1: \xff\xff s2: \xff\n");
+	printf("strcmp:    %d\n", strcmp("\xff\xff", "\xff"));
+	printf("ft_strcmp: %d\n", ft_strcmp("\xff\xff", "\xff"));
+	printf("\n");
 	printf("\033[4;37ms1 > s2\n\n\033[0m");
-	printf("s1: h s2: a\n\n");
-	printf("strcmp:    %d\n", strcmp("h", "a"));
-	printf("ft_strcmp: %d\n", ft_strcmp("h", "a"));
+	printf("s1: holaz s2: hola\n\n");
+	printf("strcmp:    %d\n", strcmp("holaz", "holai"));
+	printf("ft_strcmp: %d\n", ft_strcmp("holaz", "holai"));
 	printf("\n");
 	
 	printf("\033[4;37m!s1 && s2\n\n\033[0m");
 	printf("s1:  s2: a\n\n");
-	printf("strcmp:   %d\n", strcmp("", "a"));
+	printf("strcmp:    %d\n", strcmp("", "a"));
 	printf("ft_strcmp: %d\n", ft_strcmp("", "a"));
 	printf("\n");
 
 	printf("\033[4;37ms1 == s2\n\n\033[0m");
-	printf("s1: hola s2: hola\n\n");
-	printf("strcmp:    %d\n", strcmp("hola", "hola"));
-	printf("ft_strcmp: %d\n", ft_strcmp("hola", "hola"));
+	printf("s1: holahdaiudhqiudhqwiduqwhdiuqhd s2: holahdaiudhqiudhqwiduqwhdiuqhd\n\n");
+	printf("strcmp:    %d\n", strcmp("holahdaiudhqiudhqwiduqwhdiuqhd", "holahdaiudhqiudhqwiduqwhdiuqhd"));
+	printf("ft_strcmp: %d\n", ft_strcmp("holahdaiudhqiudhqwiduqwhdiuqhd", "holahdaiudhqiudhqwiduqwhdiuqhd"));
 	printf("\n");
 
 		
 	printf("\033[4;37m!s1 && !s2\n\n\033[0m");
 	printf("s1:  s2: \n\n");
-	printf("strcmp:   %d\n", strcmp("", ""));
+	printf("strcmp:    %d\n", strcmp("", ""));
 	printf("ft_strcmp: %d\n", ft_strcmp("", ""));
 	printf("\n");
 
 	printf("\033[4;37ms1 < s2\n\n\033[0m");
-	printf("s1: a s2: c\n\n");
-	printf("strcmp:   %d\n", strcmp("a", "c"));
-	printf("ft_strcmp: %d\n", ft_strcmp("a", "c"));
+	printf("s1: hola s2: holc\n\n");
+	printf("strcmp:    %d\n", strcmp("hola", "holc"));
+	printf("ft_strcmp: %d\n", ft_strcmp("hola", "holc"));
 	printf("\n");
 
 		
 	printf("\033[4;37ms1 && !s2\n\n\033[0m");
-	printf("s1: h s2: \n\n");
-	printf("strcmp:   %d\n", strcmp("h", ""));
-	printf("ft_strcmp: %d\n", ft_strcmp("h", ""));
+	printf("s1: hola s2: \n\n");
+	printf("strcmp:    %d\n", strcmp("hola", ""));
+	printf("ft_strcmp: %d\n", ft_strcmp("hola", ""));
 	printf("\n");
-	//printf("ft_strcmp: %s\n", ft_strcpy(dest, "hola"));
+
+	/*printf("\033[4;32mFT_STRDUP\n\n\033[0m");
+	aux = strdup("hola");
+	printf("%s\n", aux);*/
+
 	return (0);
 }

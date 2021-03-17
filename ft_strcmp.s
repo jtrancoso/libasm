@@ -2,22 +2,24 @@
 			global		_ft_strcmp
 
 _ft_strcmp:
-			xor			rcx, rcx								; clear rcx i = 0
+			xor			r8, r8									; i = 0
+			xor			rcx, rcx								; x = 0
+			xor			rax, rax								; ret = 0
 			jmp			compare
 
 compare:
-			mov			dl, BYTE[rsi + rcx]
-			cmp			dl, BYTE[rdi + rcx]						; if s1[i] == s2[i]
-			jl			greater
-			jg			lower
-			je			equal
+			mov			al, BYTE[rdi + r8]						; aux = s1[i]
+			mov			cl, BYTE[rsi + r8]						; aux2 = s2[i]
 
-lower:
-			mov			rax, -1
-			ret
+			cmp			al, 0									; if s1[i]
+			je			end_loop								; go to end
 
-greater:	mov			rax, 1
-			ret
+			cmp			al, cl									; if s1[i] != s2[i]
+			jne			end_loop								; go to end
 
-equal:		mov			rax, 0
+			inc			r8										; i++ and loop again
+			jmp			compare
+
+end_loop:
+			sub			rax, rcx								; return s2 - s1
 			ret
