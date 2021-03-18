@@ -1,6 +1,17 @@
 #include <stdio.h>
 #include <string.h>
 #include <unistd.h>
+//#include <stdlib.h>
+
+/*void	*malloc(size_t a)
+{
+	return (NULL);
+}
+
+void	free(void *ptr)
+{
+	;
+}*/
 
 size_t	ft_strlen(char *);
 char	*ft_strcpy(char *dest, char *src);
@@ -11,9 +22,10 @@ int main (void)
 {
 	char dest[200];
 	char *aux;
-	char c = "\xff";
+	char *aux2;
+	//char c = "\xff";
 
-	printf("\033[4;32mFT_STRLEN\n\n\033[0m");
+	/*printf("\033[4;32mFT_STRLEN\n\n\033[0m");
 	printf("string:    hola\n");
 	printf("strlen:    %zu\n", strlen("hola"));
 	printf("ft_strlen: %zu\n", ft_strlen("hola"));
@@ -86,11 +98,37 @@ int main (void)
 	printf("s1: hola s2: \n\n");
 	printf("strcmp:    %d\n", strcmp("hola", ""));
 	printf("ft_strcmp: %d\n", ft_strcmp("hola", ""));
+	printf("\n");*/
+
+	printf("\033[4;32mFT_STRDUP\n\n\033[0m");
+
+	aux = strdup("hola");
+	printf("strdup: %s\n", aux);
+	perror(0);
+
+	aux2 = ft_strdup("hola");
+	printf("ft_strdup: %s\n", aux2);
+	perror(0);
+
 	printf("\n");
 
-	/*printf("\033[4;32mFT_STRDUP\n\n\033[0m");
-	aux = strdup("hola");
-	printf("%s\n", aux);*/
+	/*aux = strdup("");
+	printf("strdup: %s\n", aux);
+	perror("");
+	aux2 = ft_strdup("");
+	printf("ft_strdup: %s\n", aux2);
+	perror("");
+	printf("\n");*/
+
+	/*aux = strdup("iuifhweiuvbaiuvbarvoyerbvoaerybvaeoruvybaeorvubaroivuabreiuvabrepiuvbaepryvbaeoruvbareuvybaeoruvyboaeoruvybaeoruvybaeoruvybaerouvybaeoruy");
+	printf("strdup: %s\n", aux);
+	perror("");
+	//free (aux);
+	aux2 = ft_strdup("iuifhweiuvbaiuvbarvoyerbvoaerybvaeoruvybaeorvubaroivuabreiuvabrepiuvbaepryvbaeoruvbareuvybaeoruvyboaeoruvybaeoruvybaeoruvybaerouvybaeoruy");
+	printf("ft_strdup: %s\n", aux2);
+	perror("");
+	free(aux2);
+	printf("\n");*/
 
 	return (0);
 }
