@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <unistd.h>
-//#include <stdlib.h>
+#include <stdlib.h>
 
 /*void	*malloc(size_t a)
 {
@@ -17,15 +17,18 @@ size_t	ft_strlen(char *);
 char	*ft_strcpy(char *dest, char *src);
 int		ft_strcmp(const char *s1, const char *s2);
 char	*ft_strdup(const char *s1);
+ssize_t	ft_write(int fildes, const void *buf, size_t nbyte);
 
 int main (void)
 {
 	char dest[200];
 	char *aux;
 	char *aux2;
-	//char c = "\xff";
 
-	/*printf("\033[4;32mFT_STRLEN\n\n\033[0m");
+	printf("\033[1;32m\n=============================\n");
+	printf("========== FT_STRLEN ========\n");
+	printf("=============================\n\n\033[0m");
+
 	printf("string:    hola\n");
 	printf("strlen:    %zu\n", strlen("hola"));
 	printf("ft_strlen: %zu\n", ft_strlen("hola"));
@@ -39,11 +42,12 @@ int main (void)
 	printf("string:    holawqudgweoudgvewyuvewcyewvcyiveiwcvwecvwcuewvcwVCWEYtcvwIYCTVewoucvweiycveOFGFYGFUGO8FGWEOUCvwcuwevcuwevcwegcvwycgvwecyvwcyewgvcwev\n");
 	printf("strlen:    %zu\n", strlen("holawqudgweoudgvewyuvewcyewvcyiveiwcvwecvwcuewvcwVCWEYtcvwIYCTVewoucvweiycveOFGFYGFUGO8FGWEOUCvwcuwevcuwevcwegcvwycgvwecyvwcyewgvcwev"));
 	printf("ft_strlen: %zu\n", ft_strlen("holawqudgweoudgvewyuvewcyewvcyiveiwcvwecvwcuewvcwVCWEYtcvwIYCTVewoucvweiycveOFGFYGFUGO8FGWEOUCvwcuwevcuwevcwegcvwycgvwecyvwcyewgvcwev"));
-	printf("\n");
 
-	printf("\033[4;32mFT_STRCPY\n\n\033[0m");
+	printf("\033[1;32m\n=============================\n");
+	printf("========== FT_STRCPY ========\n");
+	printf("=============================\n\n\033[0m");
 
-	printf("dest: %s\n", dest);
+	printf("dest: %s\n\n", dest);
 
 	printf("strcpy:    %s\n", strcpy(dest, "hola"));
 	printf("ft_strcpy: %s\n", ft_strcpy(dest, "hola"));
@@ -55,9 +59,12 @@ int main (void)
 
 	printf("strcpy:    %s\n", strcpy(dest, "olawqudgweoudgvewyuvewcyewvcyiveiwcvwecvwcuewvcwVCWEYtcvwIYCTVewoucvweiycveOFGFYGFUGO8FGWEOUCvwcuwevcuwevcwegcvwycgvwecyvwcyewgvcwev"));
 	printf("ft_strcpy: %s\n", ft_strcpy(dest, "olawqudgweoudgvewyuvewcyewvcyiveiwcvwecvwcuewvcwVCWEYtcvwIYCTVewoucvweiycveOFGFYGFUGO8FGWEOUCvwcuwevcuwevcwegcvwycgvwecyvwcyewgvcwev"));
-	printf("\n");
 
-	printf("\033[4;32mFT_STRCMP\n\n\033[0m");
+
+	printf("\033[1;32m\n=============================\n");
+	printf("========== FT_STRCMP ========\n");
+	printf("=============================\n\n\033[0m");
+
 	printf("s1: \xff\xff s2: \xff\n");
 	printf("strcmp:    %d\n", strcmp("\xff\xff", "\xff"));
 	printf("ft_strcmp: %d\n", ft_strcmp("\xff\xff", "\xff"));
@@ -98,9 +105,10 @@ int main (void)
 	printf("s1: hola s2: \n\n");
 	printf("strcmp:    %d\n", strcmp("hola", ""));
 	printf("ft_strcmp: %d\n", ft_strcmp("hola", ""));
-	printf("\n");*/
 
-	printf("\033[4;32mFT_STRDUP\n\n\033[0m");
+	printf("\033[1;32m\n=============================\n");
+	printf("========== FT_STRDUP ========\n");
+	printf("=============================\n\n\033[0m");
 
 	aux = strdup("hola");
 	printf("strdup: %s\n", aux);
@@ -112,15 +120,15 @@ int main (void)
 
 	printf("\n");
 
-	/*aux = strdup("");
+	aux = strdup("");
 	printf("strdup: %s\n", aux);
 	perror("");
 	aux2 = ft_strdup("");
 	printf("ft_strdup: %s\n", aux2);
 	perror("");
-	printf("\n");*/
+	printf("\n");
 
-	/*aux = strdup("iuifhweiuvbaiuvbarvoyerbvoaerybvaeoruvybaeorvubaroivuabreiuvabrepiuvbaepryvbaeoruvbareuvybaeoruvyboaeoruvybaeoruvybaeoruvybaerouvybaeoruy");
+	aux = strdup("iuifhweiuvbaiuvbarvoyerbvoaerybvaeoruvybaeorvubaroivuabreiuvabrepiuvbaepryvbaeoruvbareuvybaeoruvyboaeoruvybaeoruvybaeoruvybaerouvybaeoruy");
 	printf("strdup: %s\n", aux);
 	perror("");
 	//free (aux);
@@ -128,7 +136,23 @@ int main (void)
 	printf("ft_strdup: %s\n", aux2);
 	perror("");
 	free(aux2);
-	printf("\n");*/
+	printf("\n");
+
+	printf("\033[1;32m\n=============================\n");
+	printf("========== FT_WRITE =========\n");
+	printf("=============================\n\n\033[0m");
+
+	write(1, "\033[0mreal write: hola\n", 21);
+	ft_write(1, "ft_write: hola\n\n", 16);
+
+	write(1, "", 1);
+	ft_write(1, "", 1);
+
+	write(1, "real write: hiduqhdiuqwhdiqwhdiuwqdhqiudhqwiduhqwiwduhqwiduhqwiduhqwiduqwhdiuqwhdiuqwhwdi\n", 90);
+	ft_write(1, "ft_write: hiduqhdiuqwhdiqwhdiuwqdhqiudhqwiduhqwiwduhqwiduhqwiduhqwiduqwhdiuqwhdiuqwhwdi\n\n", 89);
+
+
+
 
 	return (0);
 }
