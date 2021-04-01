@@ -6,15 +6,16 @@
 #    By: jtrancos <jtrancos@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/13 14:48:42 by jtrancos          #+#    #+#              #
-#    Updated: 2021/03/31 13:51:16 by jtrancos         ###   ########.fr        #
+#    Updated: 2021/04/01 12:48:28 by jtrancos         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS		=	ft_strlen.s\
-				ft_strcpy.s\
-				ft_strcmp.s\
-				ft_strdup.s\
-				ft_write.s
+SRCS		=	ft_strlen.s \
+				ft_strcpy.s \
+				ft_strcmp.s \
+				ft_strdup.s \
+				ft_write.s  \
+				ft_read.s
 
 OBJS		= ${SRCS:.s=.o}
 NAME		= libasm.a

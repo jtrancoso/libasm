@@ -1,12 +1,12 @@
 			section		.text
-			global		_ft_write
+			global		_ft_read
 			extern		___error
 
-_ft_write:
-			mov			rax, 0x2000004					; we put write syscall to rax
-			syscall										; we call syscall, it does write
-			jc			failure
-			ret											; the string to write is returned in rax
+_ft_read:
+			mov			rax, 0x2000003					; we put read syscall to rax
+			syscall										; we call syscall, it does read
+			jc			failure							; if error carry flag, we jump to failure
+			ret											; we return read in rax
 
 failure:
 			mov			rcx, rax						; copy rax to rcx

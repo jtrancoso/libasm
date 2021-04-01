@@ -2,26 +2,34 @@
 #include <string.h>
 #include <unistd.h>
 #include <stdlib.h>
+#include <sys/errno.h>
 
-/*void	*malloc(size_t a)
-{
-	return (NULL);
-}
-
-void	free(void *ptr)
-{
-	;
-}*/
-
-size_t	ft_strlen(char *);
+size_t	ft_strlen(char *s);
 char	*ft_strcpy(char *dest, char *src);
 int		ft_strcmp(const char *s1, const char *s2);
 char	*ft_strdup(const char *s1);
 ssize_t	ft_write(int fildes, const void *buf, size_t nbyte);
+ssize_t	ft_read(int fildes, void *buf, size_t nbyte);
+
+void	test_strlen(char *s)
+{
+	printf("string:    %s\n", s);
+	printf("strlen:    %zu\n", strlen(s));
+	printf("ft_strlen: %zu\n", ft_strlen(s));
+	printf("\n");
+}
+
+void	test_strcpy(char *dest, char *src)
+{
+	printf("src:       %s\n", src);
+	printf("strcpy:    %s\n", strcpy(dest, src));
+	printf("ft_strcpy: %s\n", ft_strcpy(dest, src));
+	printf("\n");
+}
 
 int main (void)
 {
-	char dest[200];
+	char dest[255];
 	char *aux;
 	char *aux2;
 
@@ -29,36 +37,17 @@ int main (void)
 	printf("========== FT_STRLEN ========\n");
 	printf("=============================\n\n\033[0m");
 
-	printf("string:    hola\n");
-	printf("strlen:    %zu\n", strlen("hola"));
-	printf("ft_strlen: %zu\n", ft_strlen("hola"));
-	printf("\n");	
-
-	printf("string:\n");
-	printf("strlen:    %zu\n", strlen(""));
-	printf("ft_strlen: %zu\n", ft_strlen(""));
-	printf("\n");
-
-	printf("string:    holawqudgweoudgvewyuvewcyewvcyiveiwcvwecvwcuewvcwVCWEYtcvwIYCTVewoucvweiycveOFGFYGFUGO8FGWEOUCvwcuwevcuwevcwegcvwycgvwecyvwcyewgvcwev\n");
-	printf("strlen:    %zu\n", strlen("holawqudgweoudgvewyuvewcyewvcyiveiwcvwecvwcuewvcwVCWEYtcvwIYCTVewoucvweiycveOFGFYGFUGO8FGWEOUCvwcuwevcuwevcwegcvwycgvwecyvwcyewgvcwev"));
-	printf("ft_strlen: %zu\n", ft_strlen("holawqudgweoudgvewyuvewcyewvcyiveiwcvwecvwcuewvcwVCWEYtcvwIYCTVewoucvweiycveOFGFYGFUGO8FGWEOUCvwcuwevcuwevcwegcvwycgvwecyvwcyewgvcwev"));
+	test_strlen("hola");
+	test_strlen("");
+	test_strlen("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.");
 
 	printf("\033[1;32m\n=============================\n");
 	printf("========== FT_STRCPY ========\n");
 	printf("=============================\n\n\033[0m");
 
-	printf("dest: %s\n\n", dest);
-
-	printf("strcpy:    %s\n", strcpy(dest, "hola"));
-	printf("ft_strcpy: %s\n", ft_strcpy(dest, "hola"));
-	printf("\n");
-
-	printf("strcpy:    %s\n", strcpy(dest, ""));
-	printf("ft_strcpy: %s\n", ft_strcpy(dest, ""));
-	printf("\n");
-
-	printf("strcpy:    %s\n", strcpy(dest, "olawqudgweoudgvewyuvewcyewvcyiveiwcvwecvwcuewvcwVCWEYtcvwIYCTVewoucvweiycveOFGFYGFUGO8FGWEOUCvwcuwevcuwevcwegcvwycgvwecyvwcyewgvcwev"));
-	printf("ft_strcpy: %s\n", ft_strcpy(dest, "olawqudgweoudgvewyuvewcyewvcyiveiwcvwecvwcuewvcwVCWEYtcvwIYCTVewoucvweiycveOFGFYGFUGO8FGWEOUCvwcuwevcuwevcwegcvwycgvwecyvwcyewgvcwev"));
+	test_strcpy(dest, "hola");
+	test_strcpy(dest, "");
+	test_strcpy(dest, "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.");
 
 
 	printf("\033[1;32m\n=============================\n");
@@ -142,14 +131,37 @@ int main (void)
 	printf("========== FT_WRITE =========\n");
 	printf("=============================\n\n\033[0m");
 
+	int true_errno = errno;
+	int my_errno = errno;
+
 	write(1, "\033[0mreal write: hola\n", 21);
-	ft_write(1, "ft_write: hola\n\n", 16);
+	printf("true_errno: %d\n", true_errno);
+	ft_write(1, "ft_write: hola\n", 16);
+	printf("my_errno: %d\n", my_errno);
+	perror("");
+
+	write(1, "\n", 1);
 
 	write(1, "", 1);
 	ft_write(1, "", 1);
 
+	write(1, "\n", 1);
+
 	write(1, "real write: hiduqhdiuqwhdiqwhdiuwqdhqiudhqwiduhqwiwduhqwiduhqwiduhqwiduqwhdiuqwhdiuqwhwdi\n", 90);
 	ft_write(1, "ft_write: hiduqhdiuqwhdiqwhdiuwqdhqiudhqwiduhqwiwduhqwiduhqwiduhqwiduqwhdiuqwhdiuqwhwdi\n\n", 89);
+
+
+	printf("\033[1;32m\n=============================\n");
+	printf("========== FT_READ ==========\n");
+	printf("=============================\n\n\033[0m");
+
+	char buffer[100];
+
+	write(1, "\033[0mInsert text to read:\n> ", 28);
+	read(1, buffer, 100);
+	printf("Original: %s\n", buffer);
+	ft_read(1, buffer, 100);
+	printf("My read: %s\n", buffer);
 
 
 
