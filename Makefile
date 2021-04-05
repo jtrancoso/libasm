@@ -6,7 +6,7 @@
 #    By: jtrancos <jtrancos@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/13 14:48:42 by jtrancos          #+#    #+#              #
-#    Updated: 2021/04/01 12:48:28 by jtrancos         ###   ########.fr        #
+#    Updated: 2021/04/05 17:57:20 by jtrancos         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,8 @@ clean:
 				${RM} ${OBJS}
 
 fclean:			clean
-				${RM} ${NAME} libasm.a
+				${RM} ${NAME} ${TEST} libasm.a
+
 
 re:				fclean all
 
