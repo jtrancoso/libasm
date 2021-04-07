@@ -168,10 +168,6 @@ void	test_read(int fd)
 
 int main (void)
 {
-	char dest[255];
-	char *aux;
-	char *aux2;
-
 	printf("\033[1;34m\n=============================\n");
 	printf("========== FT_STRLEN ========\n");
 	printf("=============================\n\n\033[0m");
