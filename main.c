@@ -139,7 +139,7 @@ void	test_write(int fd, char *str)
 
 void	test_read(int fd)
 {
-	char buffer[100];
+	char buffer[1024];
 	int	true_errno;
 	int	my_errno;
 	int i;
@@ -147,14 +147,14 @@ void	test_read(int fd)
 	ssize_t mine;
 
 	write(1, "\033[0mInsert text to read:\n> ", 27);
-	real = read(fd, buffer, 100);
+	real = read(fd, buffer, 1024);
 	true_errno = errno;
 	printf("\nOriginal: %s", buffer);
 	printf("errno(%d)\n", true_errno);
 	perror(0);
 	write(1, "\n", 1);
 	write(1, "Insert text to ft_read:\n> ", 26);
-	mine = ft_read(fd, buffer, 100);
+	mine = ft_read(fd, buffer, 1024);
 	my_errno = errno;
 	printf("\nMy read: %s", buffer);
 	printf("errno(%d)\n", my_errno);
