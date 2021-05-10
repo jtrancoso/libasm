@@ -67,6 +67,7 @@ void	test_strdup(char *src)
 	char *mine;
 	int true_errno;
 	int my_errno;
+	
 
 	printf("string:          %s\n", src);
 	real = strdup(src);
